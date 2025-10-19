@@ -82,7 +82,7 @@ export default function Home() {
 
       <main className="flex-1 flex items-start justify-center px-4 pt-16 pb-8">
         <div className="w-full max-w-3xl">
-          <h1 className="text-2xl font-normal text-foreground mb-8 tracking-tight" data-testid="heading-main">
+          <h1 className="text-xl font-normal text-foreground mb-8 tracking-tight" data-testid="heading-main">
             , what do you want to make?
           </h1>
 
