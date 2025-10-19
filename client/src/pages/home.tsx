@@ -93,7 +93,7 @@ export default function Home() {
                 onChange={(e) => setDescription(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder="Describe the idea you want to build..."
-                className="min-h-[200px] resize-none border-0 p-0 text-base focus-visible:ring-0 placeholder:text-muted-foreground"
+                className="min-h-[120px] resize-none border-0 p-0 text-base focus-visible:ring-0 placeholder:text-muted-foreground"
                 data-testid="input-project-description"
                 disabled={createProjectMutation.isPending}
               />
