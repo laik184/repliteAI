@@ -20,7 +20,8 @@ export default function Home() {
 
   const createProjectMutation = useMutation({
     mutationFn: async (data: InsertProject) => {
-      return await apiRequest<Project>("POST", "/api/projects", data);
+      const res = await apiRequest("POST", "/api/projects", data);
+      return await res.json() as Project;
     },
     onSuccess: () => {
       toast({
