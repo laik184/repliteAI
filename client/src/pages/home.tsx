@@ -81,8 +81,8 @@ export default function Home() {
 
       <main className="flex-1 flex items-start justify-center px-4 pt-16 pb-8">
         <div className="w-full max-w-3xl">
-          <h1 className="text-2xl font-normal text-foreground mb-8 tracking-tight">
-            , what do you want to make?
+          <h1 className="text-2xl font-normal text-foreground mb-8 tracking-tight" data-testid="heading-main">
+            what do you want to make?
           </h1>
 
           <div className="bg-card border border-card-border rounded-lg p-6 shadow-sm">
@@ -102,7 +102,7 @@ export default function Home() {
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    className="h-9 w-9 text-muted-foreground hover-elevate"
+                    className="text-muted-foreground"
                     data-testid="button-attachment"
                   >
                     <Paperclip className="h-5 w-5" />
@@ -110,7 +110,7 @@ export default function Home() {
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    className="h-9 w-9 text-muted-foreground hover-elevate"
+                    className="text-muted-foreground"
                     data-testid="button-emoji"
                   >
                     <Smile className="h-5 w-5" />
@@ -119,7 +119,7 @@ export default function Home() {
 
                 <Button
                   size="icon"
-                  className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90 transition-colors"
+                  className="rounded-full"
                   onClick={handleSubmit}
                   disabled={!description.trim() || createProjectMutation.isPending}
                   data-testid="button-submit"
@@ -137,8 +137,8 @@ export default function Home() {
                 return (
                   <Button
                     key={category.id}
-                    variant="ghost"
-                    className={`flex items-center gap-2 px-4 py-3 h-auto rounded-lg bg-secondary hover-elevate transition-all ${
+                    variant="secondary"
+                    className={`flex items-center gap-2 px-4 py-3 h-auto rounded-lg ${
                       isSelected ? 'ring-2 ring-ring' : ''
                     }`}
                     onClick={() => setSelectedCategory(category.id)}
