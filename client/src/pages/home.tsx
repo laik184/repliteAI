@@ -140,7 +140,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3 mt-6">
+            <div className="flex gap-2 mt-6">
               {categories.map((category) => {
                 const Icon = category.icon;
                 const isSelected = selectedCategory === category.id;
@@ -149,7 +149,8 @@ export default function Home() {
                   <Button
                     key={category.id}
                     variant="secondary"
-                    className={`flex items-center gap-2 px-4 py-3 h-auto rounded-lg ${
+                    size="sm"
+                    className={`flex items-center gap-1.5 rounded-lg ${
                       isSelected ? 'ring-2 ring-ring' : ''
                     }`}
                     onClick={() => setSelectedCategory(category.id)}
