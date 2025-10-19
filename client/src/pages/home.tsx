@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useSidebar } from "@/components/ui/sidebar";
 import type { InsertProject, Project } from "@shared/schema";
 
 const categories = [
@@ -17,6 +18,7 @@ export default function Home() {
   const [description, setDescription] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const { toast } = useToast();
+  const { toggleSidebar } = useSidebar();
 
   const createProjectMutation = useMutation({
     mutationFn: async (data: InsertProject) => {
@@ -58,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="flex-1 flex flex-col overflow-auto">
       <header className="sticky top-0 z-50 w-full border-b border-border bg-card">
         <div className="flex h-14 items-center px-4 gap-3">
           <Button 
@@ -66,6 +68,7 @@ export default function Home() {
             size="icon"
             data-testid="button-sidebar-toggle"
             className="text-muted-foreground"
+            onClick={toggleSidebar}
           >
             <PanelLeft className="h-5 w-5" />
           </Button>
