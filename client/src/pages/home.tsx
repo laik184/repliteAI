@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Paperclip, Smile, Send, Globe, BarChart3, Box, PanelLeft, Grid2X2 } from "lucide-react";
+import { Paperclip, Smile, Send, Globe, BarChart3, Box, PanelLeft, Grid2X2, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutation } from "@tanstack/react-query";
@@ -83,7 +83,7 @@ export default function Home() {
       <main className="flex-1 flex items-start justify-center px-4 pt-16 pb-8">
         <div className="w-full max-w-3xl">
           <h1 className="text-2xl font-normal text-foreground mb-8 tracking-tight" data-testid="heading-main">
-            what do you want to make?
+            , what do you want to make?
           </h1>
 
           <div className="bg-card border border-card-border rounded-lg p-6 shadow-sm">
@@ -118,15 +118,25 @@ export default function Home() {
                   </Button>
                 </div>
 
-                <Button
-                  size="icon"
-                  className="rounded-full"
-                  onClick={handleSubmit}
-                  disabled={!description.trim() || createProjectMutation.isPending}
-                  data-testid="button-submit"
-                >
-                  <Send className="h-5 w-5" />
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="text-muted-foreground"
+                    data-testid="button-edit"
+                  >
+                    <Pencil className="h-5 w-5" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    className="rounded-full"
+                    onClick={handleSubmit}
+                    disabled={!description.trim() || createProjectMutation.isPending}
+                    data-testid="button-submit"
+                  >
+                    <Send className="h-5 w-5" />
+                  </Button>
+                </div>
               </div>
             </div>
 
