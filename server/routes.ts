@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertProjectSchema } from "@shared/schema";
+import { insertProjectSchema, insertFolderSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects", async (_req, res) => {
@@ -35,6 +35,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid project data" });
       }
       res.status(500).json({ message: "Failed to create project" });
+    }
+  });
+
+  app.get("/api/folders", async (_req, res) => {
+    try {
+      const folders = await storage.getAllFolders();
+      res.json(folders);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch folders" });
+    }
+  });
+
+  app.post("/api/folders", async (req, res) => {
+    try {
+      const validatedData = insertFolderSchema.parse(req.body);
+      const folder = await storage.createFolder(validatedData);
+      res.status(201).json(folder);
+    } catch (error) {
+      if (error instanceof Error && error.name === "ZodError") {
+        return res.status(400).json({ message: "Invalid folder data" });
+      }
+      res.status(500).json({ message: "Failed to create folder" });
+    }
+  });
+
+  app.patch("/api/folders/:id", async (req, res) => {
+    try {
+      const folder = await storage.updateFolder(req.params.id, req.body);
+      res.json(folder);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update folder" });
+    }
+  });
+
+  app.delete("/api/folders/:id", async (req, res) => {
+    try {
+      await storage.deleteFolder(req.params.id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete folder" });
     }
   });
 
