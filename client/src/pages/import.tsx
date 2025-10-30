@@ -90,6 +90,19 @@ export default function ImportPage() {
                   key={option.id}
                   className="w-full flex items-center gap-4 p-5 bg-[#1a1f2e] hover:bg-[#232936] border border-[#2d3748] rounded-xl transition-all group"
                   data-testid={`button-import-${option.id}`}
+                  onClick={() => {
+                    if (option.id === 'github') {
+                      setLocation('/import/github');
+                    } else if (option.id === 'figma') {
+                      setLocation('/import/figma');
+                    } else if (option.id === 'lovable') {
+                      setLocation('/import/lovable');
+                    } else if (option.id === 'bolt') {
+                      setLocation('/import/bolt');
+                    } else if (option.id === 'vercel') {
+                      setLocation('/import/vercel');
+                    }
+                  }}
                 >
                   <div className={`flex items-center justify-center w-12 h-12 rounded-lg ${option.iconBg} flex-shrink-0`}>
                     <Icon className="w-6 h-6 text-white" />
